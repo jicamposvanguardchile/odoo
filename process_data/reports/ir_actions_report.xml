@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_prtg" model="ir.actions.report">
+        <field name="name">Reports PRTG</field>
+        <field name="model">prtg.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">prtg_reports.prtg_form_report</field>
+        <field name="report_file">prtg_reports.prtg_form_report</field>
+        <field name="binding_model_id" eval="False"/>
+	<field name="paperformat_id" ref="prtg_reports.paperformat_prtg" />
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
+

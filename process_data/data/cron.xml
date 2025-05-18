@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="ir_cron_prtg_extract" model="ir.cron">
+            <field name="name">1. Cron PRTG Extract - Sincroniza datos PRTG -> Report Server</field>
+            <field name="interval_number">15</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="prtg_reports.model_prtg_server"/>
+            <field name="binding_model_id" ref="prtg_reports.model_prtg_server"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_sync_data()</field>
+            <field name="active" eval="False"/>
+        </record>
+
+        <record id="ir_cron_prtg_send_report" model="ir.cron">
+	    <field name="name">2. Cron PRTG Send Mail - Envía mail con Reportes PRTG</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="prtg_reports.model_prtg_report"/>
+            <field name="binding_model_id" ref="prtg_reports.model_prtg_report"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_send_reports(validate=True)</field>
+            <field name="active" eval="False"/>
+        </record>
+
+        <record id="ir_cron_prtg_clean" model="ir.cron">
+            <field name="name">3. Cron PRTG Clean Data</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="prtg_reports.model_prtg_server"/>
+            <field name="binding_model_id" ref="prtg_reports.model_prtg_server"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_clean_data()</field>
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>

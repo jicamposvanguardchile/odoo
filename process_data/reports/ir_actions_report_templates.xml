@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <template id="prtg_reports.style" name="style">
+            <style type="text/css">
+.fullscreen2 {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background-size: cover;
+  background-color: blue;
+
+}
+.fullscreen3 {
+		    position: absolute;
+		    z-index: -1;
+		    width: 210mm;
+        height: 297mm;
+		    ">
+		    src="/prtg_reports/static/src/img/background.jpg" style="width: 100%; height: 100%;
+}
+
+            </style>
+    </template>
+	    <!--
+	    <t t-call="prtg_reports.style" t-lang="lang"/>
+	    -->
+
+    <template id="prtg_reports.prtg_form_report">
+    <t t-foreach="docs" t-as="o">
+        <t t-set="lang" t-value="es_ES"/>
+        <t t-call="prtg_reports.first_page" t-lang="lang"/>
+        <t t-call="prtg_reports.body_page" t-lang="lang"/>
+    </t>
+    </template>
+
+    <template id="prtg_reports.first_page">
+    <t t-call="web.html_container">
+        <t t-if="not o" t-set="o" t-value="docs"/>
+        <t t-set="company" t-value="company_id"/>
+
+        <div class="header" t-att-style="report_header_style">
+           <div class="row"></div>
+        </div>
+
+        <div class="row div-1" style="background-color: #1F4E78;width:500px;min-height:100vh;">
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name"
+                t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+	        <img alt="" class="float-left" style="width:830px;" src="/prtg_reports/static/src/img/background2.jpg" />
+
+            <t t-foreach="data_reports" t-as="report">
+            <div style="position:absolute;top:440px;left:350px;page-break-inside: avoid;color:#f8fdff;text-align:center;width:450px">
+	       <h3><strong><span t-esc="report['name']"/></strong></h3>
+	       <h3><strong><span t-esc="report['subtitle']"/></strong></h3>
+            </div>
+            </t>
+            </div>
+       </div>
+
+       <div class="footer">
+           <div class="row"></div>
+       </div>
+
+    </t>
+    </template>
+
+
+    <template id="prtg_reports.body_page">
+    <t t-foreach="data_reports" t-as="report">
+	<t t-foreach="report['devices']" t-as="device">
+            <t t-call="web.basic_layout">
+			<!--<t t-foreach="report" t-as="device">-->
+                <div class="page">
+		    <h2>Device: <span t-esc="device['name']"/></h2>
+		    <div>
+		        <div>
+		            #ID PRTG: <span t-esc="device['id_prtg']"/>
+		        </div>
+		        <div>
+		            Host: <span t-esc="device['host']"/>
+			</div>
+		    </div>
+		    <div>
+		        <div>
+		            Condition: <span t-esc="device['condition']"/>
+		        </div>
+		    </div>
+	            <t t-foreach="device['path_graph']" t-as="grafico">
+		        <div> 
+		            <img style="width:850px;" t-att-src="grafico" alt="Gráfica"/>
+		        </div> 
+			<t t-if="item != item_last">
+		            <p style="page-break-after: always;"/>
+		        </t>
+	            </t>
+		    <div style="width:100%">
+			<table class="table table-hover" style="font-size:14px;">
+                        <thead>
+                            <tr>
+			    <th style="width:10%">Fecha</th>
+	                    <t t-foreach="device['sensors']" t-as="sensor">
+                                <th style="width:10%"><span t-esc="sensor['name']"/></th>
+		            </t>
+			    </tr>
+                            <tr>
+			    <th></th>
+	                    <t t-foreach="device['sensors']" t-as="sensor">
+                                <th><span t-esc="sensor['y_label']"/></th>
+		            </t>
+			    </tr>
+                        </thead>
+			<tbody>
+	                    <t t-foreach="device['table_data']" t-as="fila">
+			        <tr>
+				    <td><span t-esc="fila"/></td>
+	                            <t t-foreach="device['sensors']" t-as="sensor">
+                                        <t t-set="found" t-value="no"/>
+	                                <t t-foreach="device['table_data'][fila]" t-as="fil_col">
+					    <t t-if="fil_col[1] == sensor['ref']">
+                                                <t t-set="color" t-value="fil_col[2] or 'white'"/>
+                                                <t t-set="found" t-value="yes"/>
+						<t t-if="color == 'white'">
+                                                    <t t-set="color_rgb" t-value="'rgba(255,255,255)'"/>
+						</t>
+						<t t-elif="color == 'red'">
+                                                    <t t-set="color_rgb" t-value="'rgba(255,0,0,.3)'"/>
+						</t>
+						<t t-elif="color == 'green'">
+                                                    <t t-set="color_rgb" t-value="'rgba(0,255,0,.3)'"/>
+						</t>
+						<t t-elif="color == 'yellow'">
+                                                    <t t-set="color_rgb" t-value="'rgba(255,255,0,.3)'"/>
+						</t>
+						<td t-att-style="'text-align:right;background-color: '+color_rgb"><span t-esc="fil_col[0]"/></td>
+				            </t>
+	                                </t>
+					<t t-if="found == 'no'">
+				            <td style="text-align:right">no</td>
+	                                </t>
+		                    </t>
+			        </tr>
+	                    </t>
+			</tbody>
+			</table>
+		    </div>
+	        </div> <!-- page -->
+
+
+                <div class="footer">
+                    <div class="text-center" style="border-top: 1px solid black;">
+		        <div t-if="report_type == 'pdf'" class="text-muted">
+                    Page: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+                </div>
+
+            </t>
+        </t>
+    </t>
+    </template>
+
+
+    </data>
+</odoo>

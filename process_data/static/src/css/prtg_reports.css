@@ -1,0 +1,19 @@
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background-size: cover;
+  background-color: red;
+  background-image: url("/prtg_reports/static/src/img/background.jpg");
+  z-index: 1;
+
+}
+
+.div-1 {
+        background-color: #1F4E78;
+        width:100px;
+        height:100px;
+    }

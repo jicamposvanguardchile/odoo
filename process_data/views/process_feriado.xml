@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- VIEWS -->
+    <record id="process_feriado_form" model="ir.ui.view">
+        <field name="name">process.feriado.form</field>
+        <field name="model">process.feriado</field>
+        <field name="arch" type="xml">
+            <form string="Feriados">
+            <sheet>
+                <group name="group_header">
+                    <group name="form_detail1">
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="descripcion"/>
+                    </group>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="process_feriado_list" model="ir.ui.view">
+        <field name="name">process.feriado.list</field>
+        <field name="model">process.feriado</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <list string="Feriados">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="year"/>
+                <field name="descripcion"/>
+	    </list>
+	</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="process_feriado_action">
+        <field name="name">Feriado</field>
+        <field name="res_model">process.feriado</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem name="Feriados"
+        id="menu_process_feriado"
+        parent="menu_process_data_ajustes"
+        action="process_feriado_action"
+        sequence="50"/>
+
+</odoo>

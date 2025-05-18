@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="agroreport_email_template" model="mail.template">
+            <field name="name">AGROSUPER - Envia reporte</field>
+            <field name="model_id" ref="agroreport"/>
+            <field name="email_from">jcampos@itmetrica.cl</field>
+            <field name="email_to">jicampos@devmobile.cl</field>
+            <field name="subject">Reporte autogenerado</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Saludos
+	    Enviamos reporte automatico de status SAI
+    </p>
+</div>
+            </field>
+        </record>
+
+</data>
+</odoo>

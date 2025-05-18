@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- VIEWS -->
+    <record id="process_data_detail_form" model="ir.ui.view">
+        <field name="name">process.data.detail.form</field>
+        <field name="model">process.data</field>
+        <field name="arch" type="xml">
+            <form string="Datos">
+            <sheet>
+                <group name="group_header">
+                    <group name="report_detail1">
+                        <field name="process_group_id"/>
+                        <field name="codigo_req"/>
+                        <field name="numero_de_os"/>
+                        <field name="estado_os"/>
+                        <field name="fecha_apertura"/>
+                    </group>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="process_data_detail_list" model="ir.ui.view">
+        <field name="name">process.data.detail.list</field>
+        <field name="model">process.data</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <list string="Datos">
+                <field name="process_group_id"/>
+                <field name="codigo_req"/>
+                <field name="numero_de_os"/>
+                <field name="estado_os"/>
+                <field name="fecha_apertura"/>
+	    </list>
+	</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="process_data_detail_action">
+        <field name="name">Datos</field>
+        <field name="res_model">process.data</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem name="Detalle"
+        id="menu_process_data_detail"
+        parent="menu_process_data"
+        action="process_data_detail_action"
+        sequence="30"/>
+
+</odoo>

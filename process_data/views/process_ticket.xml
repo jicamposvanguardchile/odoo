@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- VIEWS -->
+    <record id="process_data_ticket_form" model="ir.ui.view">
+        <field name="name">process.data.ticket.form</field>
+        <field name="model">process.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Ticket">
+            <sheet>
+                <group name="group_header">
+                    <group name="report_detail1">
+                        <field name="code"/>
+                        <field name="categ_id"/>
+                        <field name="resumen"/>
+                    </group>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="process_data_ticket_list" model="ir.ui.view">
+        <field name="name">process.data.ticket.list</field>
+        <field name="model">process.ticket</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <list string="Tickets">
+                <field name="code"/>
+                <field name="categ_id"/>
+	    </list>
+	</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="process_data_ticket_action">
+        <field name="name">Ticket</field>
+        <field name="res_model">process.ticket</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem name="Ticket"
+        id="menu_process_data_ticket"
+        parent="menu_process_data_ajustes"
+        action="process_data_ticket_action"
+        sequence="30"/>
+
+</odoo>

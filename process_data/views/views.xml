@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Top menu item -->
+    <menuitem name="ISA"
+            id="menu_process_data_root"
+            web_icon="process_data,static/description/ico.png"
+	    sequence="2"/>
+
+    <menuitem name="Procesa Datos"
+            id="menu_process_data"
+	    parent="menu_process_data_root"
+	    sequence="10"/>
+
+    <menuitem name="Ajustes"
+            id="menu_process_data_ajustes"
+	    parent="menu_process_data_root"
+	    sequence="200"/>
+
+</odoo>

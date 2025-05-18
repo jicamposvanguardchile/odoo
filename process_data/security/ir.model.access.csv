@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_process_group,process_data group,model_process_group,base.group_user,1,1,1,1
+access_process_data,process_data data,model_process_data,base.group_user,1,1,1,1
+access_data_import,data_import data,model_data_import,base.group_user,1,1,1,1
+access_process_data_proyecto,data_process_data proyecto,model_process_proyecto,base.group_user,1,1,1,1
+access_process_data_jp,data_process_data jp,model_process_jp,base.group_user,1,1,1,1
+access_process_ticket_categ,data_process_ticket categ,model_process_ticket_categ,base.group_user,1,1,1,1
+access_process_ticket,data_process ticket,model_process_ticket,base.group_user,1,1,1,1
+access_proyecto_normativo,data_proyecto normativo,model_proyecto_normativo,base.group_user,1,1,1,1
+access_process_feriado,data_process feriado,model_process_feriado,base.group_user,1,1,1,1
